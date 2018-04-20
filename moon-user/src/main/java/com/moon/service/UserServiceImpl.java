@@ -1,5 +1,6 @@
 package com.moon.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.moon.entity.User;
 import com.moon.service.user.UserService;
 
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by zxin on 2018/4/16.
  */
+@Service(version = "1.0.0")
 public class UserServiceImpl implements UserService{
     @Override
     public List<User> findUsers() {
@@ -16,6 +18,6 @@ public class UserServiceImpl implements UserService{
         list.add(new User("apple","pwd_apple"));
         list.add(new User("google","pwd_google"));
         list.add(new User("microsoft","pwd_microsoft"));
-        return null;
+        return list;
     }
 }
