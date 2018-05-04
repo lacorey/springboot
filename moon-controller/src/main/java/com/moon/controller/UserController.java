@@ -1,9 +1,9 @@
 package com.moon.controller;
 
 import com.moon.controller.service.CUserService;
+import com.moon.interfaces.beans.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +16,22 @@ public class UserController {
     CUserService userService;
 
     @GetMapping("/userList")
-    public List<String> getUser(){
+    public List<UserBean> getUser(){
         return userService.pringUser();
     }
+
+    @GetMapping("/delete/{id}")
+    public void deleteUser(@PathVariable("id") Long id){
+        System.out.println("id:"+id);
+        userService.deleteUser(id);
+    }
+
+    @PostMapping("/insert")
+    public void insertUser(@ModelAttribute UserBean user){
+        System.out.println(user.getUsername());
+        System.out.println(user.getAddress());
+        userService.insertUser(user);
+    }
+
+
 }

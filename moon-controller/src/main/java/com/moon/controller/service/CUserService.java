@@ -1,6 +1,7 @@
 package com.moon.controller.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.moon.interfaces.beans.UserBean;
 import com.moon.interfaces.serivce.user.UserService;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,18 @@ public class CUserService {
     @Reference(version="1.0.0")
     UserService userService;
 
-    public List<String> pringUser(){
-        List<String> list = userService.getUsers();
+    public List<UserBean> pringUser(){
+        List<UserBean> list = userService.getUsers();
         System.out.println("list:"+list);
         System.out.println(list.size());
         return list;
+    }
+
+    public void deleteUser(Long id){
+        userService.deleteUser(id);
+    }
+
+    public void insertUser(UserBean user){
+        userService.insertUser(user);
     }
 }
